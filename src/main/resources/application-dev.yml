@@ -1,0 +1,68 @@
+server:
+  servlet:
+    context-path: /ms-data-master-config/api/v1
+  port: 8084
+
+spring:
+  main:
+    banner-mode: console
+  application:
+    name: ms-data-master-config
+  datasource:
+    url: jdbc:postgresql://sequrra-postgres-dev.czgs6oy66x99.ap-southeast-3.rds.amazonaws.com:5432/config_db
+    username: sequrra_dev
+    password: MJhFmphEQf4ZPpYdsk8f
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 10
+      idle-timeout: 300000
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    url: jdbc:postgresql://sequrra-postgres-dev.czgs6oy66x99.ap-southeast-3.rds.amazonaws.com:5432/config_db
+    user: sequrra_dev
+    password: MJhFmphEQf4ZPpYdsk8f
+    schemas: ms-data-master-config-svc
+    baseline-on-migrate: true
+    enabled: true
+    validate-on-migrate: true
+    baseline-version: 1.1
+    locations: classpath:db/migration
+    out-of-order: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  mail:
+    host:
+    port:
+    username:
+    password:
+    protocol:
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+common:
+  pageable:
+    size: 100
+    page: 0
+  sorting: ASC
+
+#endpoint-configuration
+endpoint:
+  config-enum:
+    base: /config
+    get-all: /
+    get-by-id: /{id}
+    get-by-type: /{type}
+    update: /{id}
+    delete: /{id}
+  otp-config:
+    base: /otp
+    get-all: /
+    get-by-id: /{id}
+    update: /{id}
+    delete: /{id}
+    send: /send
+    validate: /validate
