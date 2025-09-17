@@ -14,6 +14,7 @@ public class ConfigEnumEndpointProperties {
     private String getAll;
     private String getById;
     private String getByType;
+    private String type;
     private String update;
     private String delete;
 }

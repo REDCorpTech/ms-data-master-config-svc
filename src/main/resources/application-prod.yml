@@ -72,14 +72,22 @@ security:
 
 #endpoint-configuration
 endpoint:
-  authentication:
-    base: /authentication
-    signup: /signup
-    login: /login
-    refresh-token: /refresh-token
-    forgot-password: /forgot-password
-    reset-password: /reset-password
-    oauth-google: /oauth-google
+  config-enum:
+    base: /config
+    get-all: /
+    get-by-id: /{id}
+    type: /type
+    get-by-type: /type/{type}
+    update: /{id}
+    delete: /{id}
+  otp-config:
+    base: /otp
+    get-all: /
+    get-by-id: /{id}
+    update: /{id}
+    delete: /{id}
+    send: /send
+    validate: /validate
 
 
 #kafka:

@@ -55,7 +55,7 @@ endpoint:
     base: /config
     get-all: /
     get-by-id: /{id}
-    get-by-type: /{type}
+    get-by-type: /type/{type}
     update: /{id}
     delete: /{id}
   otp-config:
