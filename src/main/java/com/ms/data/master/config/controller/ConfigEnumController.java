@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -58,7 +59,7 @@ public class ConfigEnumController {
     }
 
     @GetMapping(value = "${endpoint.config-enum.get-by-type}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ConfigEnumDTO> getOrderRequests(@PathVariable String type) {
+    public ResponseEntity<List<ConfigEnumDTO>> getOrderRequests(@PathVariable String type) {
         return ResponseEntity.ok(configEnumService.getTypeService(type));
     }
 

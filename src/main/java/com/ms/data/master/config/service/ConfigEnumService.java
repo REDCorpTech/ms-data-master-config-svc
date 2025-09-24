@@ -17,9 +17,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,8 +47,8 @@ public class ConfigEnumService {
         return ConfigEnumMapper.INSTANCE.toDTO(getIdFromRepository(id));
     }
 
-    public ConfigEnumDTO getTypeService(String type) {
-        return ConfigEnumMapper.INSTANCE.toDTO(getTypeFromRepository(type));
+    public List<ConfigEnumDTO> getTypeService(String type) {
+        return ConfigEnumMapper.INSTANCE.toDTOList(getTypeFromRepository(type));
     }
 
     @Transactional
@@ -82,11 +80,12 @@ public class ConfigEnumService {
                 .orElseThrow(() -> new EntityNotFoundException("Order Request not found for id: " + id));
     }
 
-    private ConfigEnum getTypeFromRepository(String type) {
-        return configEnumRepository.findByType(type).stream()
-                .findFirst()
+    private List<ConfigEnum> getTypeFromRepository(String type) {
+        return Optional.ofNullable(configEnumRepository.findAllByType(type))
+                .filter(list -> !list.isEmpty())
                 .orElseThrow(() -> new EntityNotFoundException("Enum not found for type: " + type));
     }
+
 
     private void deleteFromRepository(UUID id) {
         configEnumRepository.deleteById(id);

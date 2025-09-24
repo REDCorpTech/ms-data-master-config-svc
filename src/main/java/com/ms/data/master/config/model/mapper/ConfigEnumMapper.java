@@ -6,6 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface ConfigEnumMapper {
     ConfigEnumMapper INSTANCE = Mappers.getMapper(ConfigEnumMapper.class);
@@ -13,6 +15,8 @@ public interface ConfigEnumMapper {
     ConfigEnum toEntity(ConfigEnumDTO configEnumDTO);
 
     ConfigEnumDTO toDTO(ConfigEnum configEnum);
+
+    List<ConfigEnumDTO> toDTOList(List<ConfigEnum> configEnum);
 
     void updateFromDTOToEntity(ConfigEnumDTO configEnumDTO, @MappingTarget ConfigEnum configEnum);
 }

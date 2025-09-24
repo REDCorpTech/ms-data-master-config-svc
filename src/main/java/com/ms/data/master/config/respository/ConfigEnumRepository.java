@@ -10,5 +10,5 @@ import java.util.UUID;
 
 @Repository
 public interface ConfigEnumRepository extends JpaRepository<ConfigEnum, UUID>, JpaSpecificationExecutor<ConfigEnum> {
-    List<ConfigEnum> findByType(String type);
+    List<ConfigEnum> findAllByType(String type);
 }
